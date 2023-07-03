@@ -7,12 +7,8 @@ object Hamming {
         if (leftStrand.length != rightStrand.length) {
             throw IllegalArgumentException("left and right strands must be of equal length")
         }
-        var result = 0
-        leftStrand.forEachIndexed { index, c ->
-            if (rightStrand[index] != c) {
-                result += 1
-            }
-        }
-        return result
+        return leftStrand.foldIndexed(
+            0
+        ) { index, acc, c -> if (rightStrand[index] != c) acc + 1 else acc }
     }
 }
