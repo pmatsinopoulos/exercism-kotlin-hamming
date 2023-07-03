@@ -5,8 +5,8 @@ object Hamming {
             return 0
         }
         require(leftStrand.length == rightStrand.length) { "left and right strands must be of equal length" }
-        return leftStrand.foldIndexed(
-            0
-        ) { index, acc, c -> if (rightStrand[index] != c) acc + 1 else acc }
+        return leftStrand.zip(rightStrand).count { pair ->
+            pair.first != pair.second
+        }
     }
 }
